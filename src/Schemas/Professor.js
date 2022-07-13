@@ -1,8 +1,8 @@
 exports.registerProfessor = {
   config: {
     rateLimit: {
-      max: 1,
-    },
+      max: 1
+    }
   },
 
   schema: {
@@ -12,27 +12,27 @@ exports.registerProfessor = {
     body: {
       type: 'object',
       properties: {
-        firstName: {type: 'string'},
-        lastName: {type: 'string'},
-        email: {type: 'string'},
-        password: {type: 'string'},
-      },
+        firstName: { type: 'string' },
+        lastName: { type: 'string' },
+        email: { type: 'string' },
+        password: { type: 'string' }
+      }
     },
     response: {
       200: {
         description: 'Successful response',
         type: 'object',
         properties: {
-          professor: {type: 'object'},
-        },
+          professor: { type: 'object' }
+        }
       },
       400: {
         description: 'Error response',
         type: 'object',
         properties: {
-          error: {type: 'string'},
-        },
-      },
-    },
-  },
-};
+          error: { type: 'string' }
+        }
+      }
+    }
+  }
+}

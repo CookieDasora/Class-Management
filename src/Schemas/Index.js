@@ -8,9 +8,9 @@ exports.HelloSchema = {
         description: 'Successful response',
         type: 'object',
         properties: {
-          hello: {type: 'string'},
-        },
-      },
-    },
-  },
-};
+          hello: { type: 'string' }
+        }
+      }
+    }
+  }
+}

@@ -16,15 +16,14 @@
   "name": "class-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {
-    "eslint": "^8.19.0",
-    "eslint-config-google": "^0.14.0"
-  },
   "scripts": {
-    "start": "node src/Index.js"
+    "start": "nodemon src/Index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
 }
