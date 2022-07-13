@@ -1,7 +1,7 @@
 const FastifyAuth = require('@fastify/auth')
-const ProfessorHandler = require('../Handlers/Professor.handler')
-const Professor = require('../Models/Professor.model')
-const { registerProfessor } = require('../Schemas/Professor.schema')
+const ProfessorHandler = require('../Handlers/Professor')
+const Professor = require('../Models/Professor')
+const { registerProfessor } = require('../Schemas/Professor')
 
 const professorRoutes = async (fastify, opts) => {
   fastify

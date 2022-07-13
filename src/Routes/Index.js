@@ -1,5 +1,5 @@
 const fp = require('fastify-plugin')
-const { HelloSchema } = require('../Schemas/Index.schema')
+const { HelloSchema } = require('../Schemas/Index')
 
 module.exports = fp(async (fastify, opts) => {
   fastify.post('/hello', HelloSchema, (req, reply) => {

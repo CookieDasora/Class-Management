@@ -17,7 +17,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/Index.js"
+    "start": "node src/Index.js",
+    "dev": "nodemon src/Index.js",
+    "lint": "npx standard --fix"
   },
   "keywords": [],
   "author": "",

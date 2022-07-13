@@ -1,4 +1,4 @@
-const Professor = require('../Models/Professor.model')
+const Professor = require('../Models/Professor')
 const validator = require('validator')
 
 /**
@@ -21,6 +21,10 @@ class ProfessorHandler {
             password.length === 0) {
       return new Error('Missing fields')
     }
+
+    if (password.length < 8) {
+      return new Error('Password is too short!')
+    };
 
     if (validator.isEmail(email) === false) {
       return new Error('Invalid Email')
