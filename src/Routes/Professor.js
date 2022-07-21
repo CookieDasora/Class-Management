@@ -1,7 +1,7 @@
 const FastifyAuth = require('@fastify/auth')
-const ProfessorHandler = require('../Handlers/Professor')
+const { registerProfessor } = require('../Handlers/Professor')
 const Professor = require('../Models/Professor')
-const { registerProfessor } = require('../Schemas/Professor')
+const { registerProfessorSchema } = require('../Schemas/Professor')
 
 const professorRoutes = async (fastify, opts) => {
   fastify
@@ -37,12 +37,11 @@ const professorRoutes = async (fastify, opts) => {
     .register(FastifyAuth)
     .after(() => {
       fastify.post('/professor/register',
-        registerProfessor,
+        registerProfessorSchema,
         async (req, reply) => {
           const { firstName, lastName, email, password } = req.body
 
-          const service = new ProfessorHandler()
-          const result = await service.register({
+          const result = await registerProfessor({
             firstName,
             lastName,
             email,
@@ -60,7 +59,6 @@ const professorRoutes = async (fastify, opts) => {
               error: 'Object is null'
             })
           };
-
           return reply.send({ professor: result })
         })
     })

@@ -1,7 +1,7 @@
-exports.registerProfessor = {
+exports.registerProfessorSchema = {
   config: {
     rateLimit: {
-      max: 1
+      max: 3
     }
   },
 
@@ -16,6 +16,7 @@ exports.registerProfessor = {
         lastName: { type: 'string' },
         email: { type: 'string' },
         password: { type: 'string' }
+
       }
     },
     response: {
@@ -23,7 +24,12 @@ exports.registerProfessor = {
         description: 'Successful response',
         type: 'object',
         properties: {
-          professor: { type: 'object' }
+          professor: {
+            firstName: { type: 'string' },
+            lastName: { type: 'string' },
+            _id: { type: 'string' },
+            tokens: [{ token: { type: 'string' }, _id: { type: 'string' } }]
+          }
         }
       },
       400: {

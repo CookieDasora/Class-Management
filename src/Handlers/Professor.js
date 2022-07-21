@@ -1,43 +1,32 @@
 const Professor = require('../Models/Professor')
 const validator = require('validator')
 
-/**
- * A Class for handling professor-related routes
-*/
-class ProfessorHandler {
-  /**
-   * Register a professor into system
-   * @param {string} firstName
-   * @param {string} lastName
-   * @param {string} email
-   * @param {string} password
-   * @return {(object | Error)} Professor information
-   *
-*/
-  async register ({ firstName, lastName, email, password }) {
-    if (firstName.length === 0 ||
+exports.registerProfessor = async ({ firstName, lastName, email, password }) => {
+  if (firstName.length === 0 ||
             lastName.length === 0 ||
             email.length === 0 ||
             password.length === 0) {
-      return new Error('Missing fields')
-    }
+    return new Error('Missing fields')
+  }
 
-    if (password.length < 8) {
-      return new Error('Password is too short!')
-    };
+  if (password.length < 8) {
+    return new Error('Password is too short!')
+  };
 
-    if (validator.isEmail(email) === false) {
-      return new Error('Invalid Email')
-    };
+  if (password.length > 32) {
+    return new Error('Password is too long')
+  };
 
-    const emailAlreadyExists = await Professor.findOne({ email })
+  if (validator.isEmail(email) === false) {
+    return new Error('Invalid Email')
+  };
 
-    if (emailAlreadyExists) {
-      return new Error('This email is already in use')
-    };
+  if (await Professor.findOne({ email })) {
+    return new Error('This email is already in use')
+  };
 
-    const professor = new Professor({ firstName, lastName, email, password })
-
+  const professor = new Professor({ firstName, lastName, email, password })
+  try {
     await professor.save()
     await professor.generateToken()
     return {
@@ -46,7 +35,7 @@ class ProfessorHandler {
       _id: professor._id,
       tokens: professor.tokens
     }
+  } catch (e) {
+    return new Error(e)
   }
-};
-
-module.exports = ProfessorHandler
+}
